@@ -1,0 +1,9 @@
+@use 'vars' as *;
+
+:root {
+    @each $color, $sub in $colors {
+        @each $subname, $val in $sub {
+            --text-#{$color}-#{$subname}: #{$val};
+        }
+    }
+}

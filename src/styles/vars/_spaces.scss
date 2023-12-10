@@ -1,0 +1,95 @@
+$size: (
+    sm: 22px,
+    md: 24px,
+    lg: 32px,
+);
+
+$positions: (
+    r: right,
+    l: left,
+    t: top,
+    b: bottom,
+);
+
+$special-positions: (
+    x: horizontal,
+    y: vertical,
+    a: auto,
+);
+
+$columns: 12;
+
+[class^='col'] {
+    flex-basis: 100%;
+}
+
+// ROW
+@for $i from 1 through $columns {
+    @media (width > 960px) {
+        .col-#{$i} {
+            flex: 0 0 (100% / ($columns / $i));
+        }
+    }
+}
+
+// position padding & margin, top,right,left, bottom
+@each $name, $val in $size {
+    @each $namePos, $valPos in $positions {
+        // PADDING
+        // ex: pl-sm, pl-md, pl-lg, pt-sm etc..
+        .p#{$namePos}-#{$name} {
+            padding-#{$valPos}: $val;
+        }
+
+        // margin
+        // ex: ml-sm, ml-md, ml-lg, mt-sm etc..
+        .m#{$namePos}-#{$name} {
+            margin-#{$valPos}: $val;
+        }
+    }
+}
+
+// position padding & margin auto, horizontal, vertical
+@each $name, $val in $size {
+    @each $namePos, $valPos in $special-positions {
+        // HORIZONTAL
+        @if $namePos == x {
+            // ex: px-sm/md/lg,
+            .p#{$namePos}-#{$name} {
+                padding: 0 $val;
+            }
+            // ex: mx-sm/md/lg
+            .m#{$namePos}-#{$name} {
+                margin: 0 $val;
+            }
+        }
+        // VERTICAL
+        @if $namePos == y {
+            // ex: py-sm/md/lg
+            .p#{$namePos}-#{$name} {
+                padding: $val 0;
+            }
+
+            // ex: my-md/sm/lg
+            .m#{$namePos}-#{$name} {
+                margin: $val 0;
+            }
+        }
+        // TOP AND BOTTOM
+        @if $namePos == a {
+            // ex: pa-sm/md/lg
+            .p#{$namePos}-#{$name} {
+                padding: $val;
+            }
+            // ex: ma-sm/md/lg
+            .m#{$namePos}-#{$name} {
+                margin: $val;
+            }
+        }
+    }
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}

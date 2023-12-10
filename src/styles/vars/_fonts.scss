@@ -1,0 +1,20 @@
+$text: (
+    sm: 12px,
+    md: 14px,
+    lg: 16px,
+);
+
+@each $name, $val in $text {
+    // ex: text-sm, text-md, text-lg
+    .text-#{$name} {
+        font-size: $val;
+    }
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+.text-regular {
+    font-weight: 400;
+}

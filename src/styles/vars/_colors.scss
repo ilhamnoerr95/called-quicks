@@ -1,0 +1,46 @@
+$colors: (
+    primary: (
+        0: #2f80ed,
+        1: #4f4f4f,
+        2: #828282,
+        3: #e0e0e0,
+    ),
+    indicators: (
+        0: #f8b76b,
+        1: #8785ff,
+        2: #eb5757,
+        3: #f2c94c,
+    ),
+    stickers: (
+        0: #e9f3ff,
+        1: #fdcfa4,
+        2: #f9e9c3,
+        3: #f9e9c3,
+        4: #afebdb,
+        5: #cbf1c2,
+        6: #cfcef9,
+        7: #f9e0fd,
+    ),
+    chats: (
+        shade-0: #fceed3,
+        0: #e5a443,
+        shade-1: #eedcff,
+        1: #9b51e0,
+        shade-2: #d2f2ea,
+        2: #43b78d,
+    ),
+);
+
+// COLORS AND BACKGROUNDS
+@each $colorName, $sub in $colors {
+    @each $subname, $val in $sub {
+        // ex: primary-0, chat-shade-0
+        .#{$colorName}-#{$subname} {
+            color: $val;
+        }
+        // ex: bg-stickers-0, bg-chats-shade-0
+        .bg-#{$colorName}-#{$subname} {
+            background-color: $val;
+        }
+    }
+}
