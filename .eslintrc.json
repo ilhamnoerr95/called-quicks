@@ -1,3 +1,38 @@
 {
-  "extends": "next/core-web-vitals"
+	"extends": [
+		"next/core-web-vitals",
+		"plugin:@typescript-eslint/recommended",
+		"prettier",
+		"plugin:@typescript-eslint/recommended"
+	],
+	"parser": "@typescript-eslint/parser",
+	"plugins": ["prettier", "@typescript-eslint"],
+	"root": true,
+	"rules": {
+		"prettier/prettier": 0,
+		"no-console": ["warn", { "allow": ["warn", "error"] }],
+		"no-unused-vars": "error",
+		"react/react-in-jsx-scope": "off",
+		"react/jsx-filename-extension": "off",
+		"react/jsx-props-no-spreading": "off",
+		"no-var": "error",
+		"no-use-before-define": "error",
+		"camelcase": "error",
+		"arrow-body-style": ["error", "as-needed"],
+		"no-shadow": "off",
+
+		"@typescript-eslint/no-shadow": "error",
+		"@typescript-eslint/no-unused-vars": ["error"],
+		"@typescript-eslint/no-explicit-any": "off",
+		"@typescript-eslint/consistent-type-imports": [
+			"error",
+			{
+				"prefer": "type-imports"
+			}
+		],
+		"@typescript-eslint/naming-convention": [
+			"error",
+			{ "selector": "typeLike", "format": ["PascalCase"] }
+		]
+	}
 }
