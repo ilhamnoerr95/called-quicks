@@ -23,7 +23,7 @@
         top: 8px;
         .float-element {
             z-index: -1;
-            transition: transform 1.25s ease-in;
+            transition: transform 1s linear;
 
             &:nth-child(1) {
                 width: 60px;
