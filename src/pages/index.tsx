@@ -6,8 +6,8 @@ import { Lato } from 'next/font/google';
 // import { CommentOutlined, CustomerServiceOutlined } from '@ant-design/icons';
 
 // components
-import Navbar from '@/Components/navbar';
-import FloatButton from '@/Components/float';
+import Navbar from '@/Components/headers/navbar';
+import FloatButton from '@/Components/float-btn/float';
 import { useState } from 'react';
 
 const lato = Lato({ weight: '400', subsets: ['latin'] });

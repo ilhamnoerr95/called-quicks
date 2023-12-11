@@ -24,27 +24,23 @@
         .float-element {
             z-index: -1;
             transition: transform 1s linear;
-
+            cursor: pointer;
+            background-color: $gray;
             &:nth-child(1) {
                 width: 60px;
                 height: 60px;
                 border-radius: 50%;
                 line-height: 80px;
-                background-color: $gray;
-                transform: translateX(0);
             }
             &:nth-child(2) {
-                background-color: $gray;
                 width: 60px;
                 height: 60px;
                 border-radius: 50%;
                 line-height: 80px;
-                transform: translateX(0);
             }
             position: absolute;
         }
         .slide-on {
-            // @extend .float-element;
             z-index: 1;
 
             &:nth-child(1) {
@@ -52,6 +48,29 @@
             }
             &:nth-child(2) {
                 transform: translateX(-120px);
+            }
+        }
+
+        .msg-open {
+            box-shadow: 10 10 10 5px #e78267;
+            &:nth-child(2) {
+                background-color: var(--color-indicators-1);
+            }
+            // &::before {
+            //     z-index: -99;
+            //     content: '';
+            //     width: 60px;
+            //     height: 60px;
+            //     background-color: white;
+            //     border-radius: 50%;
+            //     line-height: 80px;
+            //     left: -10px;
+            //     position: inherit;
+            // }
+        }
+        .todo-open {
+            &:nth-child(1) {
+                background-color: var(--color-indicators-0);
             }
         }
     }
