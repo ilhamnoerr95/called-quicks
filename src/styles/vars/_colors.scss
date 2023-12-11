@@ -31,6 +31,8 @@ $colors: (
     ),
 );
 
+$gray: #f2f2f2;
+
 // COLORS AND BACKGROUNDS
 @each $colorName, $sub in $colors {
     @each $subname, $val in $sub {

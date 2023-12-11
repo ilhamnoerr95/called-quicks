@@ -1,9 +1,20 @@
 import Head from 'next/head';
 import { Lato } from 'next/font/google';
 
+// antd
+// import { FloatButton } from 'antd';
+// import { CommentOutlined, CustomerServiceOutlined } from '@ant-design/icons';
+
+// components
+import Navbar from '@/Components/navbar';
+import FloatButton from '@/Components/float';
+import { useState } from 'react';
+
 const lato = Lato({ weight: '400', subsets: ['latin'] });
 
 export default function Home() {
+    const [slideOpen, setOpen] = useState('');
+
     return (
         <>
             <Head>
@@ -18,7 +29,35 @@ export default function Home() {
                 />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <main className={`${lato.className} row bg-primary-1`}></main>
+            <main className={`${lato.className}`}>
+                <div className="side-main"></div>
+                <div className="wrapper-main">
+                    <Navbar />
+
+                    <footer>
+                        <FloatButton setOpen={setOpen} slideOpen={slideOpen} />
+                        {/* <FloatButton.Group
+                            trigger="click"
+                            type="primary"
+                            icon={<CustomerServiceOutlined />}
+                        >
+                            <FloatButton />
+                            <FloatButton icon={<CommentOutlined />} />
+                        </FloatButton.Group> */}
+                    </footer>
+                </div>
+
+                <style>
+                    {`
+                    .ant-input {
+                        background:var(--color-primary-1)
+                    }
+                    .ant-input-prefix{
+                        color: white;
+                    }
+                    `}
+                </style>
+            </main>
         </>
     );
 }
