@@ -15,7 +15,6 @@ export const useOutside = (
                 setMsg('');
                 setTodo('');
             }
-            console.log(ref.current);
         }
         // Bind the event listener
         document.addEventListener('mousedown', handleClickOutside);

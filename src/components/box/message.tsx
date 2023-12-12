@@ -1,7 +1,13 @@
 import React from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { getNotif } from '@/Queries/index';
+
+// components
+import Loading from '@/Components/loading';
 
 const MessageComponents: React.FC<{ wrapperRef: any }> = (props) => {
-    console.log('render');
+    const notif = useQuery({ ...getNotif() });
+
     return (
         <div
             className="box-message"
@@ -9,10 +15,15 @@ const MessageComponents: React.FC<{ wrapperRef: any }> = (props) => {
             style={{
                 width: '734px',
                 height: '734px',
-                // flexShrink: '0',
             }}
         >
-            <h1>message</h1>
+            {notif.isLoading ? (
+                <Loading />
+            ) : (
+                <div style={{ height: 'inherit' }}>
+                    <h1>message</h1>
+                </div>
+            )}
         </div>
     );
 };
