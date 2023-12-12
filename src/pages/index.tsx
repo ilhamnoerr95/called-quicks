@@ -1,10 +1,6 @@
 import Head from 'next/head';
 import { Lato } from 'next/font/google';
 
-// antd
-// import { FloatButton } from 'antd';
-// import { CommentOutlined, CustomerServiceOutlined } from '@ant-design/icons';
-
 // components
 import Navbar from '@/Components/headers/navbar';
 import FloatButton from '@/Components/float-btn/float';
@@ -36,14 +32,6 @@ export default function Home() {
 
                     <footer>
                         <FloatButton setOpen={setOpen} slideOpen={slideOpen} />
-                        {/* <FloatButton.Group
-                            trigger="click"
-                            type="primary"
-                            icon={<CustomerServiceOutlined />}
-                        >
-                            <FloatButton />
-                            <FloatButton icon={<CommentOutlined />} />
-                        </FloatButton.Group> */}
                     </footer>
                 </div>
 

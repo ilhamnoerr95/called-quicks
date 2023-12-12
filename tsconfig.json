@@ -20,7 +20,8 @@
             "@/Images/*": ["./src/images/*"],
             "@/Stores/*": ["./src/store/*"],
             "@/Styles/*": ["./src/styles/*"],
-            "@/Types/*": ["./src/types/*"]
+            "@/Types/*": ["./src/types/*"],
+            "@/Hooks/*": ["./src/hooks/*"]
         }
     },
     "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

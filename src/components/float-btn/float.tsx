@@ -1,12 +1,15 @@
 import Image from 'next/image';
 import type { SetStateAction } from 'react';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 // antd
 import { Popover } from 'antd';
 
 // components
-import MessageComponents from '@/Components/message';
+import MessageComponents from '@/Components/box/message';
+
+// HOOKS
+import { useOutside } from '@/Hooks/outisdeClick';
 
 const content = (
     <div>
@@ -21,6 +24,9 @@ const FloatButton: React.FC<{
 }> = (props) => {
     const [todo, setTodo] = useState<string>('');
     const [msg, setMsg] = useState<string>('');
+
+    const wrapperRef = useRef(null);
+    useOutside(wrapperRef, setMsg, setTodo);
 
     const clickBtn = () => {
         props.setOpen(props.slideOpen ? '' : 'slide-on');
@@ -51,7 +57,7 @@ const FloatButton: React.FC<{
                 </div>
             )}
 
-            <div className="element-container">
+            <div ref={wrapperRef} className="element-container">
                 {/* TODO-LIST */}
                 <Popover content={content} title="Title" trigger="click">
                     <span
@@ -73,7 +79,7 @@ const FloatButton: React.FC<{
 
                 {/* MESSAGE */}
                 <Popover
-                    content={MessageComponents}
+                    content={<MessageComponents wrapperRef={wrapperRef} />}
                     title="Title"
                     trigger="click"
                 >
