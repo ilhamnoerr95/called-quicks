@@ -18,7 +18,7 @@
             "@/Pages/*": ["./src/pages/*"],
             "@/Queries/*": ["./src/queries/*"],
             "@/Images/*": ["./src/images/*"],
-            "@/Stores/*": ["./src/store/*"],
+            "@/Stores/*": ["./src/stores/*"],
             "@/Styles/*": ["./src/styles/*"],
             "@/Types/*": ["./src/types/*"],
             "@/Hooks/*": ["./src/hooks/*"],

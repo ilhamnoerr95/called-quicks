@@ -9,6 +9,7 @@ const Navbar = () => (
                 height: '58px',
                 background: 'var(--color-primary-1)',
                 border: 'var(--color-primary-1)',
+                position: 'fixed',
             }}
             prefix={<SearchOutlined />}
         />

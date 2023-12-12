@@ -1,15 +1,20 @@
 import Image from 'next/image';
 import type { SetStateAction } from 'react';
+import dynamic from 'next/dynamic';
 import React, { useRef, useState } from 'react';
 
 // antd
 import { Popover } from 'antd';
+import { ArrowLeftOutlined, CloseOutlined } from '@ant-design/icons';
 
 // components
-import MessageComponents from '@/Components/box/message';
+const NotifComponents = dynamic(() => import('@/Components/box/notif'));
 
 // HOOKS
 import { useOutside } from '@/Hooks/outisdeClick';
+
+// global state
+import { useMessage } from '@/Stores/index';
 
 const content = (
     <div>
@@ -25,8 +30,19 @@ const FloatButton: React.FC<{
     const [todo, setTodo] = useState<string>('');
     const [msg, setMsg] = useState<string>('');
 
+    // HOOKES
     const wrapperRef = useRef(null);
     useOutside(wrapperRef, setMsg, setTodo);
+
+    // GLOBAL STATE
+    const messageOpen = useMessage((state) => state.messageOpen);
+    const setMessage = useMessage((state) => state.updateMessage);
+    const messageName = useMessage((state) => state.messageName);
+
+    console.log(
+        'render float sub PARENTS',
+        useMessage((state) => state),
+    );
 
     const clickBtn = () => {
         props.setOpen(props.slideOpen ? '' : 'slide-on');
@@ -44,10 +60,7 @@ const FloatButton: React.FC<{
 
     return (
         <div className="floating-container">
-            {/* {todo || msg ? (
-                ''
-            ) : (
-                // BUTTON THUNDER */}
+            {/*  BUTTON THUNDER  */}
             <div className="floating-button" onClick={clickBtn}>
                 <Image
                     src="/images/thunder.svg"
@@ -56,7 +69,6 @@ const FloatButton: React.FC<{
                     alt="thunder"
                 />
             </div>
-            {/* )} */}
 
             <div ref={wrapperRef} className="element-container">
                 {/* TODO-LIST */}
@@ -80,12 +92,55 @@ const FloatButton: React.FC<{
 
                 {/* MESSAGE */}
                 <Popover
-                    content={<MessageComponents wrapperRef={wrapperRef} />}
+                    content={<NotifComponents wrapperRef={wrapperRef} />}
+                    style={{ position: 'relative' }}
                     title={
-                        <div className="search-container my-sm">
-                            <input type="text" name="search" />
-                            <span className="placeholder text-md">Search</span>
-                        </div>
+                        messageOpen ? (
+                            <>
+                                <div className="header-msg-container row">
+                                    <div
+                                        className="col-1 middle"
+                                        onClick={() =>
+                                            setMessage({
+                                                messageOpen: !messageOpen,
+                                            })
+                                        }
+                                    >
+                                        <ArrowLeftOutlined
+                                            style={{
+                                                cursor: 'pointer',
+                                                fontSize: '20px',
+                                            }}
+                                        />
+                                    </div>
+                                    <div className="col-10 ">
+                                        <h3
+                                            className="primary-0"
+                                            style={{ fontSize: '20px' }}
+                                        >
+                                            {messageName}
+                                        </h3>
+                                        <p>5 participants</p>
+                                    </div>
+                                    <div className="col-1 middle">
+                                        <CloseOutlined
+                                            style={{
+                                                cursor: 'pointer',
+                                                fontSize: '20px',
+                                            }}
+                                        />
+                                    </div>
+                                </div>
+                                <hr className=" my-md" />
+                            </>
+                        ) : (
+                            <div className="search-container my-sm">
+                                <input type="text" name="search" />
+                                <span className="placeholder text-md">
+                                    Search
+                                </span>
+                            </div>
+                        )
                     }
                     trigger="click"
                 >
