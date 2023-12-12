@@ -47,6 +47,7 @@ const FloatButton: React.FC<{
             {todo || msg ? (
                 ''
             ) : (
+                // BUTTON THUNDER
                 <div className="floating-button" onClick={clickBtn}>
                     <Image
                         src="/images/thunder.svg"
@@ -80,7 +81,12 @@ const FloatButton: React.FC<{
                 {/* MESSAGE */}
                 <Popover
                     content={<MessageComponents wrapperRef={wrapperRef} />}
-                    title="Title"
+                    title={
+                        <div className="search-container">
+                            <input type="text" name="search" />
+                            <span className="placeholder text-md">Search</span>
+                        </div>
+                    }
                     trigger="click"
                 >
                     <span
@@ -106,8 +112,15 @@ const FloatButton: React.FC<{
                 .ant-popover .ant-popover-content{
                     margin-right: 34px;
                 }
+            
                 `}
             </style>
+
+            {/* <style jsx>{`
+                // .ant-input-group-wrapper .ant-input-search .ant-input {
+                //     background: white;
+                // }
+            `}</style> */}
         </div>
     );
 };

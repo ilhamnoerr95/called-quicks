@@ -75,3 +75,28 @@
         }
     }
 }
+
+// search for message input
+.search-container {
+    display: row;
+    position: relative;
+    border: 2px solid var(--color-primary-2);
+    border-radius: 5px;
+    input {
+        width: 100%;
+        padding: 10px 8rem;
+        justify-content: center;
+        align-items: center;
+        border: none;
+
+        background-image: url('/images/icon/action/search_24px.svg');
+        background-repeat: no-repeat;
+        background-position: 34vw 10px;
+        background-size: 16px;
+    }
+    .placeholder {
+        position: absolute;
+        left: 4vw;
+        top: 7px;
+    }
+}
