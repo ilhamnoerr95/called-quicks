@@ -44,19 +44,19 @@ const FloatButton: React.FC<{
 
     return (
         <div className="floating-container">
-            {todo || msg ? (
+            {/* {todo || msg ? (
                 ''
             ) : (
-                // BUTTON THUNDER
-                <div className="floating-button" onClick={clickBtn}>
-                    <Image
-                        src="/images/thunder.svg"
-                        width={30}
-                        height={30}
-                        alt="thunder"
-                    />
-                </div>
-            )}
+                // BUTTON THUNDER */}
+            <div className="floating-button" onClick={clickBtn}>
+                <Image
+                    src="/images/thunder.svg"
+                    width={30}
+                    height={30}
+                    alt="thunder"
+                />
+            </div>
+            {/* )} */}
 
             <div ref={wrapperRef} className="element-container">
                 {/* TODO-LIST */}
@@ -82,7 +82,7 @@ const FloatButton: React.FC<{
                 <Popover
                     content={<MessageComponents wrapperRef={wrapperRef} />}
                     title={
-                        <div className="search-container">
+                        <div className="search-container my-sm">
                             <input type="text" name="search" />
                             <span className="placeholder text-md">Search</span>
                         </div>
@@ -115,12 +115,6 @@ const FloatButton: React.FC<{
             
                 `}
             </style>
-
-            {/* <style jsx>{`
-                // .ant-input-group-wrapper .ant-input-search .ant-input {
-                //     background: white;
-                // }
-            `}</style> */}
         </div>
     );
 };

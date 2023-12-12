@@ -1,0 +1,29 @@
+.card-container-msg {
+    .icon-container {
+        position: relative;
+        .shadow {
+            background-color: var(--color-primary-3);
+            z-index: 1;
+        }
+        .icon-notif {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .primary {
+            z-index: 1;
+            left: 1rem;
+            background-color: var(--color-primary-0);
+        }
+    }
+    .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: red;
+    }
+}

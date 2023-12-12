@@ -1,6 +1,7 @@
 @use 'vars' as *;
 @import './float-button';
 @import './loading';
+@import './components/card-message';
 
 :root {
     @each $color, $sub in $colors {
