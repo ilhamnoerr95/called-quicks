@@ -35,9 +35,9 @@ const MessageComponents: React.FC<{ wrapperRef: any }> = (props) => {
                 height: '734px',
             }}
         >
-            <div style={{ height: 'inherit' }} className="px-lg">
+            <div style={{ height: 'inherit' }}>
                 {messageOpen ? (
-                    <MessageSection isLoading={notif.isLoading} />
+                    <MessageSection />
                 ) : (
                     <NotifMessage
                         dataNotif={dataNotif}

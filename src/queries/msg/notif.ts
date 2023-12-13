@@ -1,4 +1,4 @@
-import { Qkeys } from '@/Types/enum';
+import { Qkeys } from '@/Types/key.types';
 
 export const getNotif = () => ({
     queryKey: [Qkeys.GET_NOTIF],

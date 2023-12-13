@@ -8,7 +8,7 @@ import { Popover } from 'antd';
 import { ArrowLeftOutlined, CloseOutlined } from '@ant-design/icons';
 
 // components
-const NotifComponents = dynamic(() => import('@/Components/box/notif'));
+const NotifComponents = dynamic(() => import('@/Components/box/message-box'));
 
 // HOOKS
 import { useOutside } from '@/Hooks/outisdeClick';
