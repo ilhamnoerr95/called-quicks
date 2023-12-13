@@ -10,9 +10,9 @@ export default async function handler(
 ) {
     try {
         const page = req.query.page;
-        const startIndex = ((page as any) - 1) * 4;
-        const endIndex = startIndex + 4;
-        const totalPages = Math.ceil(dummyData.length / 4);
+        const startIndex = ((page as any) - 1) * 6;
+        const endIndex = startIndex + 6;
+        const totalPages = Math.ceil(dummyData.length / 6);
         const paginatedData = dummyData.slice(startIndex, endIndex);
 
         return res.status(200).json({

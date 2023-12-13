@@ -1,15 +1,13 @@
 import React from 'react';
 
-// import { objetToQueryString } from '@/Helpers/queryString';
-
 //componetns
 import Loading from '@/Components/loading';
+import Divider from '@/Components/divider';
 
 // queries
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { GetDataMessage } from '@/Queries/index';
-
-// types
+import { Popover } from 'antd';
 
 const MessageCards = () => {
     const getMsg = useInfiniteQuery({ ...GetDataMessage() });
@@ -41,73 +39,126 @@ const MessageCards = () => {
     return getMsg.isLoading ? (
         <Loading />
     ) : (
-        <div
-            className="box-message"
-            style={{
-                maxWidth: '734px',
-                width: '100%',
-                height: '734px',
-                overflowY: 'scroll',
-            }}
-        >
-            <div className="inbox-container-msg px-sm">
-                {message.map((data: any, index: number) => (
-                    <>
-                        <div
-                            key={index}
-                            className={
-                                data.name === 'me' ? `right-msg` : 'left-msg'
-                            }
-                        >
-                            {/* nama */}
+        <>
+            <div
+                className="box-message"
+                style={{
+                    overflowY: 'scroll',
+                    position: 'relative',
+                }}
+            >
+                <div className="inbox-container-msg px-sm">
+                    {message.map((data: any, index: number) => (
+                        <>
                             <div
+                                key={index}
                                 className={
-                                    'text-md ' + customColorName(data.name)
+                                    data.name === 'me'
+                                        ? `right-msg`
+                                        : 'left-msg'
                                 }
                             >
-                                {data.name == 'me' ? 'You' : data.name}
-                            </div>
-
-                            {/* isi pesan */}
-                            <div className={'container-main-msg '}>
+                                {/* nama */}
                                 <div
                                     className={
-                                        data.name === 'me' ? `right` : 'left'
+                                        'text-md ' + customColorName(data.name)
                                     }
                                 >
-                                    <div className={'opt-msg '}>...</div>
+                                    {data.name == 'me' ? 'You' : data.name}
+                                </div>
 
+                                {/* isi pesan */}
+                                <div className={'container-main-msg '}>
                                     <div
-                                        className="point-msg text-sm"
-                                        style={backgroundStyle(data.name)}
+                                        className={
+                                            data.name === 'me'
+                                                ? `right`
+                                                : 'left'
+                                        }
                                     >
-                                        {data.msg}
-                                        <br />
-                                        {data.time}
+                                        {/* delet atau edit */}
+                                        <Popover
+                                            placement="bottom"
+                                            trigger="click"
+                                            content={
+                                                <div
+                                                    style={{
+                                                        cursor: 'pointer',
+                                                    }}
+                                                >
+                                                    <div
+                                                        style={{
+                                                            border: '1px solid #BDBDBD',
+                                                            padding:
+                                                                '0.5rem 2rem 0.5rem 1rem',
+                                                        }}
+                                                        className="primary-0"
+                                                    >
+                                                        Edit
+                                                    </div>
+                                                    <div
+                                                        style={{
+                                                            border: '1px solid #BDBDBD',
+                                                            padding:
+                                                                '0.5rem 2rem 0.5rem 1rem',
+                                                        }}
+                                                        className="indicators-2"
+                                                    >
+                                                        Delete
+                                                    </div>
+                                                </div>
+                                            }
+                                        >
+                                            <div className={'opt-msg '}>
+                                                ...
+                                            </div>
+                                        </Popover>
+
+                                        <div
+                                            className="point-msg text-sm"
+                                            style={backgroundStyle(data.name)}
+                                        >
+                                            {data.msg}
+                                            <br />
+                                            {data.time}
+                                        </div>
                                     </div>
                                 </div>
+
+                                {/* submit */}
                             </div>
-                        </div>
-                        {/* DIVIDER */}
-                        {index === 0 && (
-                            <div className={'headers-section '}>
-                                <span>
-                                    <p
-                                        style={{
-                                            width: '100%',
-                                            textAlign: 'center',
-                                        }}
-                                        className="text-lg text-bold"
-                                    >
-                                        Today Des 13 , 2023
-                                    </p>
-                                </span>
-                            </div>
-                        )}
-                    </>
-                ))}
+                            {/* DIVIDER */}
+                            {index === 0 && (
+                                <Divider
+                                    color="black"
+                                    text="Today Des 13 , 2023"
+                                ></Divider>
+                            )}
+                            {index === 3 && (
+                                <Divider
+                                    color="red"
+                                    text="New Messages"
+                                ></Divider>
+                            )}
+                        </>
+                    ))}
+                    <style>
+                        {`
+                        .ant-popover .ant-popover-inner{
+                            padding: 0;
+                        }
+                        `}
+                    </style>
+                </div>
             </div>
-        </div>
+            {/* submit */}
+            <div className="px-sm send-container" style={{ margin: '1rem 0' }}>
+                <input type="text " placeholder="Type a new message" />
+                <button type="submit" className="">
+                    send
+                </button>
+            </div>
+        </>
     );
 };
 
