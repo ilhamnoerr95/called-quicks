@@ -1,0 +1,11 @@
+.container-todo {
+    .detail-todo {
+        .space-align-block {
+            flex: none;
+            padding-right: 54px;
+            .mock-block {
+                display: inline-block;
+            }
+        }
+    }
+}

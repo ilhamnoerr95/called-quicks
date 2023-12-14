@@ -6,19 +6,13 @@ import { useQuery } from '@tanstack/react-query';
 import { getNotif } from '@/Queries/index';
 
 // components
-const NotifMessage = dynamic(() => import('@/Components/card/notif'));
-const MessageSection = dynamic(() => import('@/Components/card/message'));
+const MainTodo = dynamic(() => import('@/Components/card/todo'));
 
 // type
 import type { NotifData } from '@/Types/msg.type';
 
-// global state
-import { useMessage } from '@/Stores/index';
-
 const MessageComponents: React.FC<{ wrapperRef: any }> = (props) => {
     const [dataNotif, setNotif] = useState<NotifData[] | []>([]);
-    // GLOBAL STATE
-    const messageOpen = useMessage((state) => state.messageOpen);
 
     const notif = useQuery({ ...getNotif() });
 
@@ -28,15 +22,8 @@ const MessageComponents: React.FC<{ wrapperRef: any }> = (props) => {
 
     return (
         <div className="box-popover" ref={props.wrapperRef}>
-            <div style={{ height: 'inherit' }}>
-                {messageOpen ? (
-                    <MessageSection />
-                ) : (
-                    <NotifMessage
-                        dataNotif={dataNotif}
-                        isLoading={notif.isLoading}
-                    />
-                )}
+            <div style={{ height: 'inherit' }} className="container-todo">
+                <MainTodo dataNotif={dataNotif} isLoading={notif.isLoading} />
             </div>
         </div>
     );

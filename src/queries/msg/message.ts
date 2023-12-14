@@ -16,7 +16,6 @@ export const GetDataMessage = () => ({
     initialPageParam: 1,
     getNextPageParam: (_: any, pages: any) => {
         const totalPage = pages[0]?.pagination.totalPage;
-        console.log(pages);
         if (pages.length < totalPage) {
             return pages.length + 1;
         }

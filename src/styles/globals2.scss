@@ -2,6 +2,7 @@
 @import './float-button';
 @import './loading';
 @import './components/card-message';
+@import './components/todo.scss';
 
 :root {
     @each $color, $sub in $colors {
@@ -43,4 +44,9 @@ main {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+}
+
+.box-popover {
+    width: 734px;
+    height: 734px;
 }

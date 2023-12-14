@@ -4,24 +4,18 @@ import dynamic from 'next/dynamic';
 import React, { useRef, useState } from 'react';
 
 // antd
-import { Popover } from 'antd';
+import { Button, Popover, Select } from 'antd';
 import { ArrowLeftOutlined, CloseOutlined } from '@ant-design/icons';
 
 // components
 const NotifComponents = dynamic(() => import('@/Components/box/message-box'));
+const TodoComponents = dynamic(() => import('@/Components/box/todo-box'));
 
 // HOOKS
 import { useOutside } from '@/Hooks/outisdeClick';
 
 // global state
 import { useMessage } from '@/Stores/index';
-
-const content = (
-    <div>
-        <p>Content</p>
-        <p>Content</p>
-    </div>
-);
 
 const FloatButton: React.FC<{
     setOpen: SetStateAction<any>;
@@ -44,10 +38,12 @@ const FloatButton: React.FC<{
         useMessage((state) => state),
     );
 
+    // trigger slide on
     const clickBtn = () => {
         props.setOpen(props.slideOpen ? '' : 'slide-on');
     };
 
+    // trigger messagge open
     const popBtn = (params: string) => {
         if (params === 'msg-open') {
             setMsg(msg ? '' : params);
@@ -56,6 +52,11 @@ const FloatButton: React.FC<{
             setTodo(todo ? '' : params);
             setMsg('');
         }
+    };
+
+    //onchange select
+    const handleChange = () => {
+        console.log('aa');
     };
 
     return (
@@ -72,7 +73,37 @@ const FloatButton: React.FC<{
 
             <div ref={wrapperRef} className="element-container">
                 {/* TODO-LIST */}
-                <Popover content={content} title="Title" trigger="click">
+                <Popover
+                    content={<TodoComponents wrapperRef={wrapperRef} />}
+                    style={{ position: 'relative' }}
+                    title={
+                        <div
+                            style={{
+                                display: 'flex',
+                                flexDirection: 'row',
+                                justifyContent: 'space-between',
+                                paddingTop: '0.5rem',
+                            }}
+                        >
+                            <Select
+                                style={{
+                                    marginLeft: '4rem',
+                                }}
+                                placeholder="My Tasks"
+                                onChange={handleChange}
+                                options={[
+                                    {
+                                        value: 'personal',
+                                        label: 'Personal Errands',
+                                    },
+                                    { value: 'urgent', label: 'Urgent To-Do' },
+                                ]}
+                            ></Select>
+                            <Button type="primary">New Task</Button>
+                        </div>
+                    }
+                    trigger="click"
+                >
                     <span
                         className={`float-element ${props.slideOpen} ${todo}`}
                         onClick={() => popBtn('todo-open')}
@@ -85,7 +116,7 @@ const FloatButton: React.FC<{
                             }
                             width={30}
                             height={30}
-                            alt="thunder"
+                            alt="reader"
                         />
                     </span>
                 </Popover>
