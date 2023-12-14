@@ -24,8 +24,6 @@ const CardMessage: React.FC<{ dataNotif: NotifData[]; isLoading: boolean }> = (
     const setMessage = useMessage((state) => state.updateMessage);
     const messageOpen = useMessage((state) => state.messageOpen);
 
-    console.log('render notif');
-
     return props.isLoading ? (
         <Loading />
     ) : (

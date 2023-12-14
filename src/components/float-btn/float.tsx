@@ -55,9 +55,7 @@ const FloatButton: React.FC<{
     };
 
     //onchange select
-    const handleChange = () => {
-        console.log('aa');
-    };
+    const handleChange = () => {};
 
     return (
         <div className="floating-container">

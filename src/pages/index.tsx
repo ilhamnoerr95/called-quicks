@@ -10,7 +10,6 @@ const lato = Lato({ weight: '400', subsets: ['latin'] });
 
 export default function Home() {
     const [slideOpen, setOpen] = useState('');
-    console.log('RENDER PARENT');
 
     return (
         <>

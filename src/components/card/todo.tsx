@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 
 // antd
 import { Collapse, Checkbox, Space, DatePicker } from 'antd';
-// import type { CollapseProps } from 'antd';
+// import type { CheckboxValueType } from 'antd/es/checkbox/Group';
 import type { CheckboxChangeEvent } from 'antd/es/checkbox';
-
 // components
 import Loading from '@/Components/loading';
 
@@ -16,13 +15,8 @@ const MainTodo: React.FC<{
     dataNotif: NotifData[];
     isLoading: boolean;
 }> = (props) => {
-    console.log('render main todo');
     const [checked, setChecked] = useState<boolean>(true);
-
-    const onChange = (e: CheckboxChangeEvent) => {
-        console.log('checked = ', e.target.checked);
-        setChecked(e.target.checked);
-    };
+    const [open, setOpen] = useState<boolean>(true);
 
     const items = (params: NotifData[]) =>
         Array.isArray(params)
@@ -32,11 +26,18 @@ const MainTodo: React.FC<{
                       <>
                           <div className="row">
                               <Checkbox
-                                  className="col-9"
-                                  checked={checked}
-                                  onChange={onChange}
+                                  defaultChecked={index === 1 && checked}
+                                  key={data.id}
+                                  className="col-9 checkbox"
+                                  onChange={(e: CheckboxChangeEvent) => {
+                                      setChecked(e.target.checked);
+                                  }}
                               >
-                                  <strong>{data.title}</strong>
+                                  <strong
+                                      className={(index === 1 && 'done') + ''}
+                                  >
+                                      {data.title}
+                                  </strong>
                               </Checkbox>
                               <div
                                   className="col-3"
@@ -84,8 +85,20 @@ const MainTodo: React.FC<{
                                       width={12}
                                       height={12}
                                       alt="edit"
+                                      style={{ cursor: 'pointer' }}
+                                      onClick={() => setOpen(!open)}
                                   />
-                                  <p className="mock-block">{data.body}</p>
+                                  <div className="mock-block">
+                                      <textarea
+                                          disabled={open}
+                                          key={data.id}
+                                          className={
+                                              (!open && 'open') + 'text-area'
+                                          }
+                                          defaultValue={data.body}
+                                          onChange={(e) => e.target.value}
+                                      />
+                                  </div>
                               </Space>
                           </Space>
                       </div>

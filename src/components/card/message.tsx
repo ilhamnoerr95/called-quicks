@@ -12,7 +12,6 @@ import { Popover } from 'antd';
 const MessageCards = () => {
     const getMsg = useInfiniteQuery({ ...GetDataMessage() });
     const message = getMsg.data?.pages[0].data;
-    console.log('render MEssage Card', message);
 
     //style custom
     const backgroundStyle = (param: string) => {

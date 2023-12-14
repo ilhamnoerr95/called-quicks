@@ -1,10 +1,23 @@
 .container-todo {
+    .checkbox {
+        .done {
+            text-decoration: line-through;
+        }
+    }
     .detail-todo {
         .space-align-block {
             flex: none;
             padding-right: 54px;
             .mock-block {
                 display: inline-block;
+                textarea {
+                    background: white;
+                    width: 650px;
+                    border: none;
+                }
+                .open {
+                    border: 1px solid var(--color-primary-1);
+                }
             }
         }
     }

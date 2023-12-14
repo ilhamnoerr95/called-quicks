@@ -22,7 +22,10 @@ const MessageComponents: React.FC<{ wrapperRef: any }> = (props) => {
 
     return (
         <div className="box-popover" ref={props.wrapperRef}>
-            <div style={{ height: 'inherit' }} className="container-todo">
+            <div
+                style={{ height: 'inherit', overflow: 'hidden' }}
+                className="container-todo"
+            >
                 <MainTodo dataNotif={dataNotif} isLoading={notif.isLoading} />
             </div>
         </div>
