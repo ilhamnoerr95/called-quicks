@@ -33,11 +33,6 @@ const FloatButton: React.FC<{
     const setMessage = useMessage((state) => state.updateMessage);
     const messageName = useMessage((state) => state.messageName);
 
-    console.log(
-        'render float sub PARENTS',
-        useMessage((state) => state),
-    );
-
     // trigger slide on
     const clickBtn = () => {
         props.setOpen(props.slideOpen ? '' : 'slide-on');
